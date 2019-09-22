@@ -1,0 +1,65 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Document</title>
+    <link rel="stylesheet" href="main.css">
+</head>
+<body>
+    <img src="1.jpg">
+
+    <!-- 算术主体 -->
+    <div class = "arithmetic" v-cloak>
+        <input v-model="number1">
+        <!-- 算术方式选择单 -->
+        <select v-model="arithmetic">
+            <option value="jia">+</option>
+            <option value="jian">-</option>
+            <option value="cheng">*</option>
+            <option value="chu">÷</option>
+        </select>
+        <input v-model="number2">
+        <!-- 触发运算方法 -->
+        <button @click="arithmetic1">=</button>
+        <input v-model="result">
+    </div>
+    <img src="2.jpg">
+
+    <script src="http://cdn.jsdelivr.net/npm/vue/dist/vue.js"></script>
+    <script>
+    var arithmetic = new Vue({
+        el:".arithmetic",
+        data:{
+            number1:"",
+            number2:"",
+            result:"",
+            // 初始化选项
+            arithmetic:"jia",
+        },
+        methods:{
+            // 定义算术方法
+            arithmetic1:function(){
+                if(this.arithmetic == 'jia'){
+                        this.result = Number(this.number1) + Number(this.number2);
+                    }
+                if(this.arithmetic == 'jian'){
+                    this.result =Number(this.number1) - Number(this.number2);
+                }
+                if(this.arithmetic == 'cheng'){
+                    this.result = Number(this.number1) * Number(this.number2);
+                }
+                if(this.arithmetic == 'chu'){
+                    if(this.number2 == '0'){
+                        alert('除数不为0');
+                    }else{
+                        this.result = Number(this.number1) / Number(this.number2);
+                    }
+                };
+            }
+        }
+    });    
+    </script>
+</body>
+</html>
